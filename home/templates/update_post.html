@@ -1,0 +1,26 @@
+{% extends 'home/base.html'%}
+<!DOCTYPE html>
+<html lang = "en">
+    <title> {%block title %} Edit Blog Post {%endblock%}</title>
+    {% block content%}
+    <body>
+        {% if user.is_authenticated %}     
+            {% if user.is_authenticated %}
+            <h1>Edit Post :</h1>
+            <br/><br/>
+            <div class = "form-control"> 
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Update</button>  
+                </form>
+            </div> 
+            {% else %}  
+            You are not allowed here
+            {% endif %}
+    {% else %}   
+        Kindly re-direct yourself to somewhere that isn't here wohooo
+    {% endif %}            
+    </body>  
+    {% endblock %}
+</html> 

@@ -1,0 +1,32 @@
+{% extends 'home/base.html'%}
+<!DOCTYPE html>
+<html lang = "en">
+    {% block content %}
+    <body>
+        
+            <h1>Hey, welcome </h1>
+            {% for Post in object_list %}
+            
+                Title: <a href= "{% url 'post-detail' Post.pk %}"> {{ Post.title }} </a>
+                {% if user.is_authenticated %}
+                    {% if user.id == post.author.id %}
+                    <small> <a href="{%url 'update_post' Post.pk%}"> (Edit)</a>  </small>
+                    {% endif %}
+                {% endif %}
+                <br/>
+                Author: {{ Post.author.first_name }} 
+                {{ Post.author.last_name }} 
+    </br>
+        {{ Post.body|slice:"100"|safe }}...
+    </br>
+                <small> {{ Post.post_date }}     </small>   
+            <br/>
+            <br/>
+            
+                  
+    </body>
+</html>   
+            {% endfor %}
+    {% endblock %}
+
+    
